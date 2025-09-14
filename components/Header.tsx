@@ -4,7 +4,7 @@ import { TrendingUp, Menu, X, Search, User, BookOpen, Award } from "lucide-react
 import { useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

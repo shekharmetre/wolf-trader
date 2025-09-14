@@ -17,7 +17,6 @@ interface ChapterCardProps {
 export default function ChapterCard({
     chapter,
     index,
-    activeChapter,
     handleChapterClick,
 }: ChapterCardProps) {
     const [isExpanded, setIsExpanded] = useState(false);

@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
+import {  CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, User, Lock, Play, CarTaxiFront, ShoppingCart } from "lucide-react";
+import { Star, Clock, User, Play, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
