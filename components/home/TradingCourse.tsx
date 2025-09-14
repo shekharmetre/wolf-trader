@@ -174,8 +174,8 @@ export default function TradingCourseCarousel() {
                 className="flex md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
                 whileTap={{ cursor: "grabbing" }}
             >
-                {tradingCourses.map((course) => (
-                    <CourseCard course={course} key={course.id} />
+                {tradingCourses.map((course,index) => (
+                    <CourseCard course={course} key={course.id+index} keyid={course.id+index} />
                 ))}
             </motion.div>
 

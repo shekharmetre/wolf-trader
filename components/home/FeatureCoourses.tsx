@@ -53,7 +53,7 @@ const FeaturedCourses = ({ title = "Featured Courses", variant = "default" }: Fe
             }
           `}
         >
-          {allCourses.map((course, index) => (
+          {allCourses.slice(0, 6).map((course, index) => (
             <motion.div
               key={course.id}
               initial={{ opacity: 0, y: 30 }}

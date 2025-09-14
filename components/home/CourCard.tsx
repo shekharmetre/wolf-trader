@@ -6,10 +6,10 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { Course } from "@/lib/types";
 
-export function CourseCard({ course }: { course: Course }) {
+export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
     const navigation = useRouter()
     return (
-        <div className="flex-shrink-0 m-2 w-[75%] md:w-[280px] lg:w-[300px] border-1 rounded-2xl shadow-lg overflow-hidden bg-white dark:bg-neutral-900 snap-start">
+        <div key={keyid} className="flex-shrink-0 m-2 w-[75%] md:w-[280px] lg:w-[300px] border-1 rounded-2xl shadow-lg overflow-hidden bg-white dark:bg-neutral-900 snap-start">
             {/* Course Image */}
             <div className="relative w-full h-40 " onClick={() => { navigation.push(`courses/${course.id}`) }}>
                 <Image
