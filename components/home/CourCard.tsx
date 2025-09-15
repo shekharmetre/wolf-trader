@@ -1,4 +1,3 @@
-import {  CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, Clock, User, Play, ShoppingCart } from "lucide-react";
 import Image from "next/image";
@@ -6,12 +5,12 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { Course } from "@/lib/types";
 
-export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
+export function CourseCard({ course,keyid,trending }: { course: Course,keyid:string,trending?:boolean }) {
     const navigation = useRouter()
     return (
-        <div key={keyid} className="flex-shrink-0 m-2 w-[75%] md:w-[280px] lg:w-[300px] border-1 rounded-2xl shadow-lg overflow-hidden bg-white dark:bg-neutral-900 snap-start">
+        <div key={keyid} className={`flex-shrink-0 md:h-full h-[17rem] md:m-2 ${trending ? "w-[60%]" : "w-full"} md:w-[280px] lg:w-[300px] border-1 rounded-md shadow-lg overflow-hidden bg-white dark:bg-neutral-900 snap-start`}>
             {/* Course Image */}
-            <div className="relative w-full h-40 " onClick={() => { navigation.push(`courses/${course.id}`) }}>
+            <div className="relative w-full md:h-40 h-28" onClick={() => { navigation.push(`courses/${course.id}`) }}>
                 <Image
                     src={course.image}
                     alt={course.title}
@@ -25,17 +24,17 @@ export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
             </div>
 
             {/* Content */}
-            <CardContent className="md:p-4 space-y-2 py-2 mt-2">
+            <div className="md:p-4 px-2 space-y-2 md:py-2 mt-2">
                 {/* Title */}
-                <h3 className="text-lg font-semibold leading-tight line-clamp-2">
+                <h3 className="md:text-lg text-sm font-semibold leading-tight line-clamp-2">
                     {course.title}
                 </h3>
 
                 {/* Instructor */}
-                <p className="text-sm text-muted-foreground">{course.instructor}</p>
+                <p className="hidden md:block md:text-sm text-xs text-muted-foreground">{course.instructor}</p>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-2 mt-1">
+                <div className="flex md:flex-wrap overflow-auto gap-2 mt-1">
                     {course.isNew && <Badge className="bg-green-500">New</Badge>}
                     {course.isBestseller && (
                         <Badge className="bg-yellow-500">Bestseller</Badge>
@@ -48,7 +47,7 @@ export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
                     <div className="flex items-center gap-1">
                         <Clock size={14} /> {course.duration}
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="md:flex hidden items-center gap-1">
                         <Star size={14} className="text-yellow-500" /> {course.rating}
                     </div>
                     <div className="flex items-center gap-1">
@@ -57,7 +56,7 @@ export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
                 </div>
 
                 {/* Price */}
-                <div className="flex items-baseline justify-between gap-2 mt-2">
+                <div className="flex items-baseline justify-between gap-2 md:mt-2">
                     <div>
                         <span className="text-lg font-bold">{course.price}</span>
                         {course.originalPrice && (
@@ -68,7 +67,7 @@ export function CourseCard({ course,keyid }: { course: Course,keyid:string }) {
                     </div>
                     <Button variant="outline"><ShoppingCart /></Button>
                 </div>
-            </CardContent>
+            </div>
         </div>
     );
 }

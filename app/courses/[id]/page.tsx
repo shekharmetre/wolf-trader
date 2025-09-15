@@ -1,14 +1,14 @@
 'use client'
 import { use, useState } from "react";
-import {  Play,  Star, Clock, Users, Award, CheckCircle, Target, BookOpen, TrendingUp, Shield, Tag, Gift } from "lucide-react";
+import { Play, Star, Clock, Users, Award, CheckCircle, Target, BookOpen, Shield, Tag, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
+import Image from "next/image";
 import { allCourses, chapters } from "@/lib/data";
 import { Chapter, Course } from "@/lib/types";
-import { useRouter } from "next/navigation";
 import ChapterCard from "@/components/courses/Chapterard";
 import { MobileCheckoutSheet } from "@/components/courses/CoupenSetup";
 
@@ -68,87 +68,74 @@ const CourseDetail = ({ params }: { params: Promise<{ id: string }> }) => {
     };
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background ">
             {/* Hero Section */}
-            <div className="relative overflow-hidden bg-gradient-hero">
-                <div className="absolute inset-0 bg-background/20" />
-                <div className="relative container mx-auto px-4 py-8">
-                    <div className="flex md:flex-row flex-col-reverse  gap-12 items-center">
-                        <div className="space-y-6">
-                            <div className="flex gap-2 flex-wrap">
-                                {course.isNew && (
-                                    <Badge variant="secondary">NEW</Badge>
-                                )}
-                                {course.isBestseller && (
-                                    <Badge variant="destructive">BESTSELLER</Badge>
-                                )}
-                                {course.hasFreeTrial && (
-                                    <Badge variant="outline">FREE TRIAL</Badge>
-                                )}
-                            </div>
+            <section className="p-3 flex md:grid md:justify-center md:px-36 md:grid-cols-3  md:flex-row flex-col-reverse">
 
-                            <h1 className="md:text-4xl text-2xl lg:text-5xl font-bold text-foreground leading-tight">
-                                {course.title}
-                            </h1>
+                <div className="mt-5 md:col-span-2">
+                    <div className="flex gap-2 flex-wrap">
+                        {!course.isNew && (
+                            <Badge variant="secondary">NEW</Badge>
+                        )}
+                        {!course.isBestseller && (
+                            <Badge variant="destructive">BESTSELLER</Badge>
+                        )}
+                        {!course.hasFreeTrial && (
+                            <Badge variant="outline">FREE TRIAL</Badge>
+                        )}
+                    </div>
 
-                            <p className="md:text-xl text-sm text-foreground/80 leading-relaxed">
-                                {course.description}
-                            </p>
+                    {/*  */}
+                    <h1 className="md:text-4xl mt-5 text-[1.9rem] lg:text-5xl font-bold text-foreground leading-tight">
+                        {course.title}
+                    </h1>
 
-                            <div className="flex items-center gap-6 text-foreground/70">
-                                <div className="flex items-center gap-2">
-                                    <Star className="w-5 h-5 fill-warning text-warning" />
-                                    <span className="font-medium">{course.rating}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Users className="w-5 h-5" />
-                                    <span>{course.students} students</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock className="w-5 h-5" />
-                                    <span>{course.duration}</span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4">
-                                <span className="text-3xl font-bold text-foreground">{course.price}</span>
-                                <span className="text-xl text-foreground/50 line-through">{course.originalPrice}</span>
-                                <Badge variant="secondary" className="text-success border-success">51% OFF</Badge>
-                            </div>
-
-                            <Button variant="secondary" onClick={() => setManualOpen(true)} className="w-full sm:w-auto transition-all duration-300 text-lg py-6 px-8">
-                                Enroll Now
-                            </Button>
+                    <p className="md:text-xl text-md text-foreground/80 leading-relaxed">
+                        {course.description}
+                    </p>
+                    <div className="flex mt-5 items-center gap-6 text-[16px] text-foreground/70">
+                        <div className="flex items-center gap-2">
+                            <Star className="w-5 h-5 fill-warning text-warning" />
+                            <span className="font-medium">14.6</span>
                         </div>
-
-                        <div className="relative">
-                            <div className="relative rounded-2xl overflow-hidden shadow-elevatorte">
-                                <img
-                                    src={course.image}
-                                    alt={course.title}
-                                    className="w-full aspect-video object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-                                <div className="absolute bottom-6 left-6 right-6">
-                                    <div className="flex items-center justify-between text-foreground">
-                                        <div>
-                                            <p className="text-sm opacity-80">Instructor</p>
-                                            <p className="font-semibold">{course.instructor}</p>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <Award className="w-5 h-5" />
-                                            <span className="text-sm">{course.level}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="flex items-center gap-2">
+                            <Users className="w-5 h-5" />
+                            <span>{course.students} students</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Clock className="w-5 h-5" />
+                            <span>{course.duration}</span>
+                        </div>
+                    </div>
+                    <div className="flex mt-5 items-center gap-4">
+                        <span className="text-3xl font-bold text-foreground">{course.price}</span>
+                        <span className="text-xl text-foreground/50 line-through">{course.originalPrice}</span>
+                        <Badge variant="secondary" className="text-success border-success">51% OFF</Badge>
+                    </div>
+                    <Button variant="secondary" onClick={() => setManualOpen(true)} className=" mt-5 bg-blue-400 sm:w-auto transition-all duration-300 text-lg py-6 px-8">
+                        Enroll Now
+                    </Button>
+                </div>
+                <div className="relative w-full shadow-xl">
+                    <Image alt="sdf" src={course.image} width={200} height={200} className="w-full  h-48 md:h-[20rem] rounded-2xl object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+                    <div className="absolute md:bottom-20 bottom-6 left-6 right-6">
+                        <div className="flex items-center justify-between text-foreground">
+                            <div>
+                                <p className="text-sm opacity-80">Instructor</p>
+                                <p className="font-semibold">{course.instructor}</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Award className="w-5 h-5" />
+                                <span className="text-sm">{course.level}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </section>
             {/* Main Content */}
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 md:py-20 py-10">
                 <div className="grid lg:grid-cols-3 gap-12">
                     {/* Left Content */}
                     <div className="lg:col-span-2 space-y-12">
@@ -185,7 +172,7 @@ const CourseDetail = ({ params }: { params: Promise<{ id: string }> }) => {
                                         technical indicator analysis, and develop robust risk management strategies. Our proven methodology
                                         has helped thousands of students achieve consistent trading results.
                                     </p>
-                       
+
                                 </div>
                             </div>
                         </section>

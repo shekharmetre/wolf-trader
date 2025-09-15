@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface NavLinkProps {
@@ -47,7 +48,7 @@ const Footer = () => {
         <div className="grid gap-10 lg:grid-cols-4 ">
           {/* Logo + About Section */}
           <div>
-            <a href="/#" className="mb-6 inline-block max-w-[160px]">
+            <Link href="/#" className="mb-6 inline-block max-w-[160px]">
               <img
                 src="https://cdn.tailgrids.com/assets/images/logo/logo.svg"
                 alt="logo"
@@ -58,7 +59,7 @@ const Footer = () => {
                 alt="logo"
                 className="max-w-full hidden dark:block"
               />
-            </a>
+            </Link>
             <p className="mb-7 text-base text-body-color dark:text-dark-6">
               Sed ut perspiciatis unde omnis iste natus error sit amet
               voluptatem totam rem aperiam.
@@ -79,12 +80,12 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {group.links.map((link) => (
                     <li key={link.label}>
-                      <a
+                      <Link
                         href={link.link}
                         className="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

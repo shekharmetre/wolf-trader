@@ -8,7 +8,7 @@ import CategoryGrid from "@/components/home/CategoryGrid";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedCourses from "@/components/home/FeatureCoourses";
 import Testimonials from "@/components/home/Testimonials";
-import Courses from "@/components/home/Courses";
+import TradingCourseCarousel from "@/components/home/TradingCourse";
 
 const Landing = () => {
     const navigate = useRouter()
@@ -61,7 +61,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            <Courses />
+            <TradingCourseCarousel />
 
             {/* Featured Courses */}
             <FeaturedCourses />

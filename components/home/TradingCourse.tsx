@@ -165,17 +165,17 @@ const tradingCourses = [
 
 export default function TradingCourseCarousel() {
     return (
-        <div className="w-full px-2 md:px-8 lg:px-16">
+        <div className="w-full px-2 md:px-8 lg:max-w-7xl mx-auto">
             <CoursesTitle
                 title="Trending Courses"
                 subtitle="Explore our curated collection of top-rated trading courses, designed to help you grow from beginner to pro."
             />
             <motion.div
-                className="flex md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+                className="flex md:gap-6 gap-1 py-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
                 whileTap={{ cursor: "grabbing" }}
             >
                 {tradingCourses.map((course,index) => (
-                    <CourseCard course={course} key={course.id+index} keyid={course.id+index} />
+                    <CourseCard trending={true} course={course} key={course.id+index} keyid={course.id+index} />
                 ))}
             </motion.div>
 

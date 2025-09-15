@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface HeroSectionProps {
     onSearch: (query: string) => void;
@@ -11,6 +12,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onSearch }: HeroSectionProps) => {
     const [searchQuery, setSearchQuery] = useState('')
+    const navigate = useRouter()
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,7 +32,7 @@ const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-primary opacity-10 rounded-full blur-3xl animate-float" />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-20 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Content */}
                     <motion.div
@@ -89,7 +91,7 @@ const HeroSection = ({ onSearch }: HeroSectionProps) => {
                                 />
                                 {/* <Search className="absolute gradient-hero text-white p-1 rounded-full  right-4 top-1/2 transform -translate-y-1/2" /> */}
                             </div>
-                            <Button type="submit" variant="default" size="lg" className="h-12 min-w-[120px] md:block hidden">
+                            <Button type="submit" variant="default" size="lg" className="h-14  min-w-[120px] md:block hidden">
                                 Search Courses
                             </Button>
                         </motion.form>
@@ -101,11 +103,11 @@ const HeroSection = ({ onSearch }: HeroSectionProps) => {
                             transition={{ delay: 0.6, duration: 0.6 }}
                             className="grid md:grid-cols-1 grid-cols-2 gap-4"
                         >
-                            <button className="group gradient-primary flex items-center  gap-2 px-2 md:p-4 justify-center rounded-md">
-                                <Play className="w-5 h-5  group-hover:scale-110 transition-transform" />
+                            <Button  variant="default" className="py-6" onClick={()=>navigate.push(`/courses?search=as`)} >
+                                <Play className="w-5 h-8  group-hover:scale-110 transition-transform" />
                                 Start Learning
-                            </button>
-                            <Button variant="ghost" size="lg" className="border border-border">
+                            </Button>
+                            <Button variant="outline" className="py-6">
                                 Watch Free Preview
                             </Button>
                         </motion.div>
